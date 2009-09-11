@@ -29,7 +29,9 @@
 
 void detailedOutput(NSArray *);
 
-int main (int argc, const char * argv[]) {	
+int main (int argc, const char * argv[]) {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
 	SCDynamicStoreRef dynStore = SCDynamicStoreCreate(
 		NULL,
 		(CFStringRef) [[NSBundle mainBundle] bundleIdentifier],
@@ -56,6 +58,8 @@ int main (int argc, const char * argv[]) {
 	CFRelease(pluginRef);
 	CFRelease(comRef);
 	CFRelease(dynStore);
+	
+	[pool release];
 
     return 0;
 }
